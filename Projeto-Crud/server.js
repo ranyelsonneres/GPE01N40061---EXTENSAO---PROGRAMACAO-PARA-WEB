@@ -16,6 +16,16 @@ app.get('/', (req, res) =>{
     res.sendFile(path.join(__dirname, 'public', 'index.html')); //disponibilizar a página do front
 });
 
+//chamar o arquivo de API (rotas)
+const apiRoutes = require('./routes/api');
+
+//tratar as requisições do front (JSON)
+app.use(express.json()); //middlewares - função que recebe outra função
+
+
+//endpoint para apontar para rotas (api.js);
+// /api/users/
+app.use('/api/users/', apiRoutes);
 
 //vincular o servidor a porta
 app.listen(port, () =>{
